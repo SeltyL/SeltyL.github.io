@@ -182,7 +182,7 @@
 <meta property="og:site_name" content="HexaWater">
 <meta property="og:description" content="JavaScript DOM 编程艺术 Note（1） 我记得以前曾经在哪儿看过一句话 “一个程序员写代码的时候，只有一小部分的代码是用来实现功能的，其余大部分代码都是在处理特殊情况” 当然 我觉得说得有些夸张了233 不过不能否认的是 代码的健壮性是衡量一段代码是否良好的重要指标之一 最近刚开始学JavaScript 觉得书里一些方面说得挺有道理 故而做笔记加以记录。 与DOM脚本编程工作相关的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-15T10:36:17.782Z">
+<meta property="og:updated_time" content="2018-11-15T11:05:33.416Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript DOM 编程艺术 Note（1）">
 <meta name="twitter:description" content="JavaScript DOM 编程艺术 Note（1） 我记得以前曾经在哪儿看过一句话 “一个程序员写代码的时候，只有一小部分的代码是用来实现功能的，其余大部分代码都是在处理特殊情况” 当然 我觉得说得有些夸张了233 不过不能否认的是 代码的健壮性是衡量一段代码是否良好的重要指标之一 最近刚开始学JavaScript 觉得书里一些方面说得挺有道理 故而做笔记加以记录。 与DOM脚本编程工作相关的">
@@ -464,7 +464,7 @@
                 
               
 
-              <time title="创建时间：2018-11-15 18:35:16 / 修改时间：18:36:17" itemprop="dateCreated datePublished" datetime="2018-11-15T18:35:16+08:00">2018-11-15</time>
+              <time title="创建时间：2018-11-15 18:35:16 / 修改时间：19:05:33" itemprop="dateCreated datePublished" datetime="2018-11-15T18:35:16+08:00">2018-11-15</time>
             
 
             
@@ -554,16 +554,16 @@
 <li>性能考虑</li>
 </ul>
 <hr>
-<h2 id="平稳退化"><a href="#平稳退化" class="headerlink" title="平稳退化"></a>平稳退化</h2><p><strong>平稳退化*</strong>（graceful degradation）*：意指在用户的浏览器不支持JavaScript或用户手动禁用了JavaScript的情况下，仍能保证他们能够顺利浏览网站（即便一些进阶的功能无法使用）</p>
-<p>比如，当你需要实现一个以新窗口的形式打开一个链接的功能（必要），你或许会选择写一个JavaScript函数并存入外部文件，并在网页中通过<script>标签导入。那么，如何调用函数呢？</p>
+<h2 id="平稳退化"><a href="#平稳退化" class="headerlink" title="平稳退化"></a>平稳退化</h2><p><strong>平稳退化</strong> <em>（graceful degradation）</em>：意指在用户的浏览器不支持JavaScript或用户手动禁用了JavaScript的情况下，仍能保证他们能够顺利浏览网站（即便一些进阶的功能无法使用）</p>
+<p>比如，当你需要实现一个以新窗口的形式打开一个链接的功能（必要），你或许会选择写一个JavaScript函数并存入外部文件，并在网页中通过&lt;script&gt;标签导入。那么，如何调用函数呢？</p>
 <p><strong>不推荐的做法</strong>：</p>
 <ul>
 <li>使用伪协议</li>
 <li>用内嵌事件处理函数</li>
 </ul>
-<p><strong>伪协议*</strong>（pseudo-protocol）* , 即类似于（假设popUp()即所写的函数）<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:popUp('http://www.example.com/');"</span>&gt;</span>Example<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>伪协议</strong> <em>（pseudo-protocol）</em> , 即类似于（假设popUp()即所写的函数）<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:popUp('http://www.example.com/');"</span>&gt;</span>Example<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>这种语句在支持“javascript:”伪协议的浏览器中运行正常，较老的浏览器则会尝试打开那个链接而失败，支持这种伪协议但禁用JavaScript功能的浏览器会什么也不做。</p>
-<p><strong>内嵌事件</strong> ：如把onclick事件处理函数作为属性嵌入<a>标签，<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">onclick</span>=<span class="string">"popUp('http://www.example.com/');</span></span></span><br><span class="line"><span class="tag"><span class="string"> return false;"</span>&gt;</span>Example<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>内嵌事件</strong> ：如把onclick事件处理函数作为属性嵌入&lt;a&gt;标签，<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">onclick</span>=<span class="string">"popUp('http://www.example.com/');</span></span></span><br><span class="line"><span class="tag"><span class="string"> return false;"</span>&gt;</span>Example<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>同上，对于不支持或禁用JavaScript的用户来说依旧不能实现功能。</p>
 <p><strong>推荐的做法</strong>：<br>增加一个选择：使用内嵌的事件处理函数退而求其次地实现最基本的功能。</p>
 <p>依旧以这个比方为例，我们可以把href属性设置为真实有效的URL地址。</p>
@@ -580,11 +580,11 @@
 <p>您只需要在HTML文档里输入：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.example.com/"</span> <span class="attr">class</span>=<span class="string">"popup"</span>&gt;</span>Example<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>并在JavaScript文档里输入：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> links = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"a"</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;links.length; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(links[i].getAttribute(<span class="string">"class"</span>) == <span class="string">"popup"</span>)&#123;</span><br><span class="line">        links[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            popUp(<span class="keyword">this</span>.getAttribute(<span class="string">"href"</span>));</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>此时，已经成功分离JavaScript。</p>
-<p>然而，还有一个问题尚待解决：若直接将上面的代码写入JavaScript文档，是无法正常运行的。因为这段代码的第一行会在JavaScript文档被加载时立刻执行。若JavaScript文档是从HTML文档的<head>部分由<script>标签调用的，它将在HTML文档之前加载到浏览器里。同样，如果<script>标签位于文档底部之前，就不能保证哪个文件最先结束加载。因为脚本加载时文档可能不完整，所以模型也不完整。没有完整的DOM，getElementByTagName等方法就不能正常工作。</p>
+<p>然而，还有一个问题尚待解决：若直接将上面的代码写入JavaScript文档，是无法正常运行的。因为这段代码的第一行会在JavaScript文档被加载时立刻执行。若JavaScript文档是从HTML文档的&lt;head&gt;部分由&lt;script&gt;标签调用的，它将在HTML文档之前加载到浏览器里。同样，如果&lt;script&gt;标签位于文档底部之前，就不能保证哪个文件最先结束加载。因为脚本加载时文档可能不完整，所以模型也不完整。没有完整的DOM，getElementByTagName等方法就不能正常工作。</p>
 <p>而由于onload方法的存在，使上段代码的正常运行成为了可能。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = prepareLinks;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prepareLinks</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> links = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"a"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;links.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(links[i].getAttribute(<span class="string">"class"</span>) == <span class="string">"popup"</span>)&#123;</span><br><span class="line">            links[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                popUp(<span class="keyword">this</span>.getAttribute(<span class="string">"href"</span>));</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">popUp</span>(<span class="params">winURL</span>)</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
 <h2 id="向后兼容"><a href="#向后兼容" class="headerlink" title="向后兼容"></a>向后兼容</h2><p>不得不说，即使你不愿意相信，确实存在那些至此JavaScript但无法理解DOM提供的方法和属性的浏览器。</p>
-<p>对这个问题最简单的解决方案是：<strong>对象检测*</strong>（object detection）*</p>
+<p>对这个问题最简单的解决方案是：<strong>对象检测</strong> <em>（object detection）</em></p>
 <p>如，您使用了getElementById()方法，即可在调用这个方法前检查用户使用的浏览器是否支持这个方法。</p>
 <p>依旧以上段代码为例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="built_in">document</span>.getElementsByTagName) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">var</span> links = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"a"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;links.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(links[i].getAttribute(<span class="string">"class"</span>) == <span class="string">"popup"</span>)&#123;</span><br><span class="line">            links[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                popUp(<span class="keyword">this</span>.getAttribute(<span class="string">"href"</span>));</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">popUp</span>(<span class="params">winURL</span>)</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>注意：在使用if()条件句进行对象检测时，<strong>一定要删掉方法名后面的圆括号</strong>。若不删掉，测试的将是方法的结果，无论方法是否存在。</p>
@@ -602,17 +602,18 @@
 <h3 id="合并和放置脚本"><a href="#合并和放置脚本" class="headerlink" title="合并和放置脚本"></a>合并和放置脚本</h3><p> 推荐将实现不同功能的函数合并到较少个脚本文件中。这样即可减少加载页面时发送的请求数量。</p>
 <p> 同样，脚本在标记中的位置对页面的初次加载也有很大影响。</p>
 <p> 一般来说，根据HTTP规范，浏览器每次从同一个域名中最多只能同时下载两个文件。而下载脚本期间，浏览器不会下载其他任何文件，即使是来自不同域名的文件也不会下载，所有其他资源都要等脚本加载完毕后才能下载。</p>
-<p> 故将脚本放在文档的<head>区域是存在问题的。它会导致浏览器无法并行加载其他文件。<br> 建议将<script>标签都放在文档末尾，即<body>的闭合标签之前，就可以使页面变得更快。</p>
+<p> 故将脚本放在文档的&lt;head&gt;区域是存在问题的。它会导致浏览器无法并行加载其他文件。<br> 建议将&lt;script&gt;标签都放在文档末尾，即&lt;/body&gt;之前，就可以使页面变得更快。</p>
 <h3 id="压缩脚本"><a href="#压缩脚本" class="headerlink" title="压缩脚本"></a>压缩脚本</h3><p> 所谓压缩脚本，指的是把脚本文件中不必要的字节，如空格和注释等，统统删除。</p>
 <p> 诚然，压缩后的脚本不便于阅读，却可以大幅度减少文件大小。多数情况下，您应该有两个版本，一个是工作副本，可以修改代码并添加注释；另一个是精简副本，用于放在站点上。通常，为了与非精简版本区分开，最好在精简副本的文件名中加上min字样。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"scripts/scriptName.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>推荐几个有代表性的代码压缩工具：</p>
 <ul>
-<li>Douglas Crockford 的 JSMin(<a href="http://www.crockford.com/javascript/jsmin.html)">http://www.crockford.com/javascript/jsmin.html)</a>;</li>
-<li>雅虎的 YUI Compressor(<a href="http://yui.github.io/yuicompressor/)">http://yui.github.io/yuicompressor/)</a>;</li>
-<li>谷歌的 Closure Compiler(<a href="https://closure-compiler.appspot.com/home">https://closure-compiler.appspot.com/home</a>)</li>
+<li>Douglas Crockford 的 JSMin(<a href="http://www.crockford.com/javascript/jsmin.html)" target="_blank" rel="noopener">http://www.crockford.com/javascript/jsmin.html)</a>;</li>
+<li>雅虎的 YUI Compressor(<a href="http://yui.github.io/yuicompressor/)" target="_blank" rel="noopener">http://yui.github.io/yuicompressor/)</a>;</li>
+<li>谷歌的 Closure Compiler(<a href="https://closure-compiler.appspot.com/home" target="_blank" rel="noopener">https://closure-compiler.appspot.com/home</a>)</li>
 </ul>
-</script></p>
+<p>（P.S. 在md文件中如果要写纯文本的”&lt;”和”&amp;”的话，”&lt;”要写成”&amp;lt ;”(去掉分号前面的空格) ，”&amp;”要写成”&amp;amp ;”(去掉分号前面的空格) ,即使用实体的形式）</p>
+
       
     </div>
 
@@ -811,7 +812,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-DOM-编程艺术-Note（1）"><span class="nav-number">1.</span> <span class="nav-text">JavaScript DOM 编程艺术 Note（1）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与DOM脚本编程工作相关的几个良好习惯"><span class="nav-number">1.1.</span> <span class="nav-text">与DOM脚本编程工作相关的几个良好习惯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平稳退化"><span class="nav-number">1.2.</span> <span class="nav-text">平稳退化</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-DOM-编程艺术-Note（1）"><span class="nav-number">1.</span> <span class="nav-text">JavaScript DOM 编程艺术 Note（1）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与DOM脚本编程工作相关的几个良好习惯"><span class="nav-number">1.1.</span> <span class="nav-text">与DOM脚本编程工作相关的几个良好习惯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平稳退化"><span class="nav-number">1.2.</span> <span class="nav-text">平稳退化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分离JavaScript"><span class="nav-number">1.3.</span> <span class="nav-text">分离JavaScript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向后兼容"><span class="nav-number">1.4.</span> <span class="nav-text">向后兼容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能考虑"><span class="nav-number">1.5.</span> <span class="nav-text">性能考虑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#尽量少访问DOM和尽量减少标记"><span class="nav-number">1.5.1.</span> <span class="nav-text">尽量少访问DOM和尽量减少标记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并和放置脚本"><span class="nav-number">1.5.2.</span> <span class="nav-text">合并和放置脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩脚本"><span class="nav-number">1.5.3.</span> <span class="nav-text">压缩脚本</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
