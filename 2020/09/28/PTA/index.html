@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <meta name="referrer" content="origin">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>
+        
+            PTA刷题小笔记
+        
+    </title>
+    <link rel="shortcut icon" href="#"/>
+
+    <link type="text/css" rel="stylesheet" href="/font/LongCang.css">
+    <link type="text/css" rel="stylesheet" href="/font/Monda.css">
+    <link type="text/css" rel="stylesheet" href="/font/NotoSansSC.css">
+    <link type="text/css" rel="stylesheet" href="/font/NotoSerifSC.css">
+    <link type="text/css" rel="stylesheet" href="/font/Playball.css">
+    <link type="text/css" rel="stylesheet" href="/font/PTMono.css">
+    <link type="text/css" rel="stylesheet" href="/font/Roboto.css">
+    <link type="text/css" rel="stylesheet" href="/font/RobotoSlab.css">
+    <link type="text/css" rel="stylesheet" href="/font/Rosario.css">
+    <link type="text/css" rel="stylesheet" href="/font/UbuntuMono.css">
+
+    <link type="text/css" rel="stylesheet" href="/css/base.css">
+    <link type="text/css" rel="stylesheet" href="/css/code.css">
+
+    <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+    <a id="cover"></a>
+    <link type="text/css" rel="stylesheet" href="/css/post.css">
+<div id="header" class="header">
+    <div class="vertical">
+        <div class="inner">
+            
+                <h1 class="header-subtitle">PTA刷题小笔记</h1>
+                <div class="header-subinfo">
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2020-09-28
+                        </span>
+                        
+                            <span id="/2020/09/28/PTA/" class="leancloud_visitors" data-flag-title="PTA刷题小笔记">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2020/09/28/PTA/"></span>
+                        </span>  
+                    </p>
+                    
+                        
+                            <span class="category-color">Code</span>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    </div>
+    
+</div>
+<div id="container">
+    
+        <!-- 文章页面 -->
+        <div id="article">
+            <div class="toc"></div>
+            <div class="article-body">
+                <p>记录用，迅速复习。</p>
+<hr>
+<h3 id="1-关于c-中的sort-函数"><a href="#1-关于c-中的sort-函数" class="headerlink" title="1.关于c++中的sort()函数"></a>1.关于c++中的sort()函数</h3><ul>
+<li>STL中提供的sort算法有个限制，利用sort算法只能对序列容器进行排序，如vector，list，deque等。若要对map容器进行value排序，方法如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//把map中的key值和value值分别转存到一个pair类型的vector中，在对vector按照一定的规则排序即可。这样的方法对值一样的情况也能够使用。</span><br><span class="line">int cmp(pair&lt;string, int&gt; x, pair&lt;string, int&gt; y)&#123; </span><br><span class="line">    return x.second &gt; y.second;</span><br><span class="line">&#125;    </span><br><span class="line">    </span><br><span class="line">int main()&#123;  </span><br><span class="line">	vector&lt;pair&lt;string,int&gt;&gt; tVector;  </span><br><span class="line">	sort(tVector.begin(), tVector.end(), cmp);</span><br><span class="line">	for(int i = 0; i &lt; tVector.size(); i++)  </span><br><span class="line">		cout&lt;&lt; tVector[i].first &lt;&lt; &quot;: &quot; &lt;&lt; tVector[i].second &lt;&lt; endl;  </span><br><span class="line">	return 0;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//注意：若要将map中的元素转化为pair，可调用make_pair()函数</span><br><span class="line">for (auto curr = tMap.begin(); curr != tMap.end(); curr++)   </span><br><span class="line">		tVector.push_back(make_pair(curr-&gt;first, curr-&gt;second));</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>c++使用sort自定义函数cmp能够方便地解决一些排序问题（尤其是多重排序&#x2F;结构体）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">struct stu &#123; // 定义一个结构体stu，number表示学号，score表示分数</span><br><span class="line">    int number;</span><br><span class="line">    int score;</span><br><span class="line">&#125;</span><br><span class="line">bool cmp(stu a, stu b) &#123; // cmp函数，返回值是bool，传入的参数类型应该是结构体stu类型</span><br><span class="line">    if (a.score != b.score) // 如果学生分数不同，就按照分数从大到小排列</span><br><span class="line">        return a.score &gt; b.score;</span><br><span class="line">    else // 如果学生分数相同，就按照学号从小到大排列    </span><br><span class="line">        return a.number &lt; b.number;</span><br><span class="line">&#125;</span><br><span class="line">//写法二</span><br><span class="line">bool cmp(stu a, stu b) &#123;</span><br><span class="line">    return a.score != b.score ? a.score &gt; b.score : a.number &lt; b.number;</span><br><span class="line">&#125;</span><br><span class="line">//...以下是sort用法，与上面的无关</span><br><span class="line">int array[10];</span><br><span class="line">sort(array, array + 10, cmp);</span><br><span class="line">vector&lt;int&gt; v(10);</span><br><span class="line">sort(v.begin(), v.end(), cmp);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>stable_sort()的用法与sort()一致，区别是stable_sort函数遇到两个数相等时，不对其交换顺序</li>
+</ul>
+<p><strong>注意：sort函数的cmp最后返回值的判断条件必须是严格大于或严格小于（快排）</strong><br><strong>TIPS：排序传参建议用引用传参，这样速度更快</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//...</span><br><span class="line">struct node &#123;</span><br><span class="line">    string t;</span><br><span class="line">    int value;</span><br><span class="line">&#125;;</span><br><span class="line">bool cmp(const node &amp;a, const node &amp;b) &#123;</span><br><span class="line">    return a.value != b.value ? a.value &gt; b.value : a.t &lt; b.t;</span><br><span class="line">&#125;</span><br><span class="line">//...</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-常用小函数"><a href="#2-常用小函数" class="headerlink" title="2.常用小函数"></a>2.常用小函数</h3><p><strong>判断素数的isprime()写法如下（减小时间复杂度）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bool isprime(int a) &#123;</span><br><span class="line">    if(a == 1) return false;</span><br><span class="line">    for (int i = 2; i * i &lt;= a; i++)</span><br><span class="line">        if (a % i == 0) return false;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>求两个数的最大公约数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int gcd(int a, int b)&#123;</span><br><span class="line">    return b == 0 ? a : gcd(b, a % b);&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>求两个数的最小公倍数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = a * b / gcd(a, b);</span><br></pre></td></tr></table></figure>
+<p><strong>将一个十进制数在radix进制下反转生成十进制数（即将原始十进制数转换为radix进制，再反转，再转回十进制数）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int rev(int n, int radix)&#123;</span><br><span class="line">	int sum = 0;</span><br><span class="line">	while(n &gt; 0)&#123;</span><br><span class="line">		sum = sum * radix + n % radix;</span><br><span class="line">		n /= radix;</span><br><span class="line">	&#125;</span><br><span class="line">	return sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>长整数加法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//在此之前，需要将n和t的长度调整到相同，在短字符串前补0直至长度与长字符串相等</span><br><span class="line">void add(string n, string t)&#123;</span><br><span class="line">    int len = n.length(), c = 0;</span><br><span class="line">    for(int i = len - 1; i &gt;= 0; i--)&#123;</span><br><span class="line">        n[i] = n[i] + t[i] + c - &#x27;0&#x27;;</span><br><span class="line">        c = 0;</span><br><span class="line">        if(n[i] &gt; &#x27;9&#x27;)&#123;</span><br><span class="line">            n[i] -= 10;</span><br><span class="line">            c = 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if(c != 0)</span><br><span class="line">        n = &#x27;1&#x27; + n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>长整数除法（被除数为长整数）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">string Divide(string str, int x)&#123; // x为除数</span><br><span class="line">    int remainder = 0; // 余数</span><br><span class="line">    for(int i = 0; i &lt; str.size(); i++)&#123;</span><br><span class="line">        int current = remainder * 10 + str[i] - &#x27;0&#x27;;</span><br><span class="line">        str[i] = current / x + &#x27;0&#x27;;</span><br><span class="line">        remainder = current % x;</span><br><span class="line">    &#125;</span><br><span class="line">    int pos = 0;</span><br><span class="line">    while(str[pos] == &#x27;0&#x27;)</span><br><span class="line">        pos++;</span><br><span class="line">    return str.substr(pos); // 去掉前面多余的0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-数组原地循环右移的方法"><a href="#3-数组原地循环右移的方法" class="headerlink" title="3.数组原地循环右移的方法"></a>3.数组原地循环右移的方法</h3><p>如数组大小为n，需循环右移m位。原地移动的方法是：先将数组倒置，再将数组前m位倒置，最后将数组后（n-m）位倒置即可。倒置函数reverse()在algorithm头文件中。<br>为防止m &gt; n，最开始先 m %&#x3D; n;</p>
+<p><strong>Tips：reverse函数用于反转在[first,last)范围内的顺序（包括first指向的元素，不包括last指向的元素），reverse函数无返回值</strong><br>e.g. 反转字符串：reverse(str.begin(), str.end()) 反转vector容器同理。</p>
+<h3 id="4-判断字符为数字-x2F-字母等"><a href="#4-判断字符为数字-x2F-字母等" class="headerlink" title="4.判断字符为数字&#x2F;字母等"></a>4.判断字符为数字&#x2F;字母等</h3><p>头文件cctype 常用函数如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">isalpha（字母，大小写均包含）</span><br><span class="line">isdigit（数字）</span><br><span class="line">islower（小写字母） -&gt; 转化为小写 tolower()</span><br><span class="line">isupper（大写字母） -&gt; 转化为大写 toupper()</span><br><span class="line">isalnum（字母或数字）</span><br><span class="line">isblank（space和\t）</span><br><span class="line">isspace（space \t \r \n）</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-进制转换"><a href="#5-进制转换" class="headerlink" title="5.进制转换"></a>5.进制转换</h3><p>（1）设十进制数t转化为D进制，将每一次t%d的结果保存在int类型的数组s中，然后将t&#x2F;d，直到t等于0为止，此时s中保存的就是t在D进制下每一位的结果的倒序，最后倒序输出s数组即可（注意特殊情况：为0，边界情况等）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">while(t != 0)&#123;</span><br><span class="line">    int last = t % d;</span><br><span class="line">    binary.push_back(last);</span><br><span class="line">    t /= d;</span><br><span class="line">&#125;</span><br><span class="line">for(int i = binary.size() - 1; i &gt;= 0; i--)</span><br><span class="line">    printf(&quot;%d&quot;, binary[i]);</span><br></pre></td></tr></table></figure>
+<p>（2）设D进制数x转化为十进制数，依次取x的最高位，加到sum中，并每次循环时sum*d</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//这里为了方便，D进制数x用string储存</span><br><span class="line">int number = 0;</span><br><span class="line">for(int i = 0; i &lt; x.size(); i++)&#123;</span><br><span class="line">    number *= d;</span><br><span class="line">    number += ChartoInt(x[i]); // 防止D&gt;10, 会有字母出现</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-字符串相关"><a href="#6-字符串相关" class="headerlink" title="6.字符串相关"></a>6.字符串相关</h3><p><strong>字符串切割</strong>：</p>
+<ul>
+<li>s.substr(5，3)&#x2F;&#x2F;从下标为5起，共三个字符</li>
+<li>s.substr(5)&#x2F;&#x2F;从下标为5起直到结尾</li>
+</ul>
+<p><strong>查找字母：find()</strong><br>string中find()返回值是字母在母串中的位置（下标记录），如果没有找到，那么会返回一个特别的标记npos（返回值可以看成是一个int型的数） 判断条件如下：b.find(a[i]) &#x3D;&#x3D; string::npos</p>
+<p><strong>读取一个含有空格的字符串</strong><br>使用getline(cin, str)<br>（注：若在getline之前用scanf从输入流里读入了某个参数，要记住在getline()之前getchar()，读取换行）</p>
+<p><strong>字符串倒置</strong><br><code>reverse(str.begin(), str.end())//无返回值</code></p>
+<p><strong>从字符串中读取指定格式的数据</strong><br>sscanf() – 从一个字符串中读进与指定格式相符的数据<br>sprintf() – 字符串格式化命令，主要功能是把格式化的数据写入某个字符串中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">char a[50], b[50];</span><br><span class="line">scanf(&quot;%s&quot;, a);</span><br><span class="line">sscanf(a, &quot;%lf&quot;, &amp;temp);</span><br><span class="line">sprintf(b, &quot;%.2f&quot;,temp);</span><br><span class="line">//接受最多精确到小数点后两位的数</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="7-输出格式控制"><a href="#7-输出格式控制" class="headerlink" title="7.输出格式控制"></a>7.输出格式控制</h3><p>%(0)md	m为指定的输出字段的宽度。如果数据的位数小于m，则左端补以空格(0)，若大于m，则按实际位数输出。<br>四舍五入：(int)(a + 0.5)（a为小数）；若是b&#x2F;2四舍五入（b为整数），则b &#x2F; 2 + b % 2</p>
+<h3 id="8-数据类型的范围"><a href="#8-数据类型的范围" class="headerlink" title="8.数据类型的范围"></a>8.数据类型的范围</h3><p>ASCII码表里，字符转换为数字的最大值为127<br>int的取值范围为: -2^31——2^31-1,即-2147483648——2147483647（≤10^9可用int表示）<br>long long的取值范围为：-2^63——2^63-1,即-922 3372 0368 5477 5808 ～ 922 3372 0368 5477 5807（≤10^18可用long long表示）<br><strong>注：大数阶乘，大数的排列组合等，一般都要求将输出结果对1000000007取模（取余）</strong><br>（以下给出柳婼学姐的大概（？）解释</p>
+<blockquote>
+<ol>
+<li>1000000007是一个质数（素数），对质数取余能最大程度避免冲突～</li>
+<li>int32位的最大值为2147483647，所以对于int32位来说1000000007足够大</li>
+<li>int64位的最大值为2^63-1，对于1000000007来说它的平方不会在int64中溢出<br>所以在大数相乘的时候，因为(a∗b)%c&#x3D;((a%c)∗(b%c))%c，所以相乘时两边都对1000000007取模，再保存在int64里面不会溢出<br>出处From:<a target="_blank" rel="noopener" href="https://www.liuchuo.net/archives/645">https://www.liuchuo.net/archives/645</a> 例子：PAT 甲级1093）</li>
+</ol>
+</blockquote>
+<h3 id="9-查找"><a href="#9-查找" class="headerlink" title="9.查找"></a>9.查找</h3><p><strong>1.algorithm中的find()函数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//a为STL容器</span><br><span class="line">find(a.begin(), a.end(), value);</span><br><span class="line">//a为数组</span><br><span class="line">find(a, a + length, value);</span><br></pre></td></tr></table></figure>
+<p>返回值均为迭代器（容器）或指针（数组），若不存在则返回a.end()</p>
+<p><strong>2.各容器自己的成员函数的find()实现</strong><br>vector没有find函数<br>其余的STL容器返回的均是迭代器<br>string的find函数返回的是下标索引</p>
+<p><strong>3.判断条件</strong><br>对于返回迭代器的情况：<br>find(a.begin(), a.end(), value) !&#x3D; a.end()<br>对于string：<br>a.find(value) &#x3D;&#x3D; string::npos</p>
+<h3 id="10-最大-x2F-最小元素"><a href="#10-最大-x2F-最小元素" class="headerlink" title="10.最大&#x2F;最小元素"></a>10.最大&#x2F;最小元素</h3><p>函数：min_element()与max_element（），需包含头文件#include <algorithm><br>作用：返回容器中最小值和最大值的指针。可针对数组、字符串、STL容器。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">bool cmp(int a, int b)&#123;</span><br><span class="line">	return a &lt; b;</span><br><span class="line">&#125;</span><br><span class="line">//cmp为可选参数，默认是从小到大排序min取最小max取最大，若自定义cmp为从大到小排序，则min取最大，max取最小</span><br><span class="line">int main()&#123;</span><br><span class="line">	int num[]=&#123;2,3,1,6,4,5&#125;;</span><br><span class="line">	cout&lt;&lt;&quot;最小值是 &quot; &lt;&lt; *min_element(num, num + 6) &lt;&lt; endl;</span><br><span class="line">	cout&lt;&lt;&quot;最大值是 &quot; &lt;&lt; *max_element(num, num + 6) &lt;&lt; endl;</span><br><span class="line">	cout&lt;&lt;&quot;最小值是 &quot; &lt;&lt; *min_element(num, num + 6, cmp) &lt;&lt; endl;</span><br><span class="line">	cout&lt;&lt;&quot;最大值是 &quot; &lt;&lt; *max_element(num, num + 6, cmp) &lt;&lt; endl;</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-细碎小知识点"><a href="#11-细碎小知识点" class="headerlink" title="11.细碎小知识点"></a>11.细碎小知识点</h3><ul>
+<li>加法的进位不可能大于1（n + n &#x3D; 2 * n 故而其结果不会大于当前进制）</li>
+<li>当元素具有非重复性时（即不可能有两个元素相等），一般记录方式采用map或set</li>
+<li>若数组过大，建议设置为全局变量。若放在某个函数里会溢出栈（解释by柳神：大数组一定要开全局，而不是写在main函数里面，否则容易发生段错误（因为大数组在main函数里面的话是存储在栈里，而栈空间是在进程创建时初始化的，有固定的大小，一般为几十KB，所以太大的数组会耗光栈空间。而全局变量占用的堆空间，堆空间中的内存是按需分配，自由增长的，可以非常大，比如32位的系统中可以大到4GB。将大数组放在全局变量中能避免栈溢出））</li>
+<li>在做与图相关的题目时，要注意添加输入判断。若题中没有明确说明两点间只有一条路和输入路径一定都是有效路径，则首先应将e[x][x]初始化为0（以防输入里有首尾同点，但距离大于0的情况），在之后读入距离时，注意判断e[u][v]是否不为inf，若此次距离小于e[u][v]则读入（选取最小距离）。（虽然一般题目应该不会挖这种坑但还是以防万一吧…</li>
+<li>闰年的判断规则：<code>(year % 4 == 0 &amp;&amp; year % 100 != 0) || (year % 400 == 0)</code>→该条件为true时为闰年，闰年的2月有29天，其余情况2月28天。</li>
+<li>计算周几的小公式——基姆拉尔森计算公式：<code>W= (d+2*m+3*(m+1)/5+y+y/4-y/100+y/400+1)%7</code></li>
+</ul>
+<h3 id="12-填充（初始化）数组-x2F-容器"><a href="#12-填充（初始化）数组-x2F-容器" class="headerlink" title="12.填充（初始化）数组&#x2F;容器"></a>12.填充（初始化）数组&#x2F;容器</h3><h4 id="1-整体填充-fill-函数"><a href="#1-整体填充-fill-函数" class="headerlink" title="1.整体填充-fill()函数"></a><strong>1.整体填充-fill()函数</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">fill(vec.begin(), vec.end(), val);</span><br><span class="line">fill(array + 3, array + 6, val);</span><br><span class="line">//区间范围依旧是前闭后开</span><br></pre></td></tr></table></figure>
+<p><strong>注意：fill函数只能对输入范围内已存在的元素进行操作。即若是STL容器，需要进行初始化，空容器会报错</strong></p>
+<h4 id="2-容器初始化"><a href="#2-容器初始化" class="headerlink" title="2.容器初始化"></a><strong>2.容器初始化</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; v(10); // 直接定义长度为10的int数组，默认这10个元素值都为0</span><br><span class="line">//注意：只有初始化过的vector数组，后面才可以用[]索引进行直接赋值</span><br><span class="line">vector&lt;int&gt; v3(100, 9);// 把100长度的数组中所有的值都初始化为9</span><br><span class="line">vector&lt;int&gt; v2(a, a + n); // 将int a[1000]中a[0]到a[n - 1]的值拷贝到该vector中</span><br></pre></td></tr></table></figure>
+
+<h3 id="13-常见单词解释"><a href="#13-常见单词解释" class="headerlink" title="13.常见单词解释"></a>13.常见单词解释</h3><p>polynomial - 多项式<br>be accurate to 1 decimal place - 精确到小数点后一位<br>significant digits - 有效数字<br>to be rounded up or down 就是四舍五入. round up &#x3D; 五入, round down &#x3D; 四舍<br>radix - 进制  decimal system - 十进制<br>even number - 偶数<br>descendant - 子孙，后代<br>inverted binary tree 反转二叉树<br>preorder traversal: root-left-right（先序遍历）<br>inorder traversal: left-root-right（中序遍历）<br>postorder traversal: left-right-root（后序遍历）<br>level order traversal：层序遍历<br>acyclic - 无环的<br>duplication - 重复<br>lexicographically - 字典序<br>Quadratic probing - 二次方探查法（HashTable）<br>volume - 体积<br>topological order - 拓扑序列</p>
+<h3 id="14-常见题型的小技巧"><a href="#14-常见题型的小技巧" class="headerlink" title="14.常见题型的小技巧"></a>14.常见题型的小技巧</h3><ul>
+<li>当要检测某个元素是否存在时（如最开始输入一系列学生信息，由结构体存储，而后输入一些学生编号以查询信息，其中可能有不存在的学生编号），常见方法是使用数组作索引（如先初始化数组均为0，写一个for循环，对于每个已知的编号，exist[stu[i].id] &#x3D; i + 1 → i + 1的原因是避免0的出现，0可作为是否存在的判断依据）。这样既可以判断一个学生编号是否合法，也可以根据exist数组来进行索引，由学生编号索引到包含该编号的结构体变量。</li>
+<li>若需要对一个数组进行特别值初始化（如均初始化为某一非零特定值），建议使用vector</li>
+<li>若输入项数不定（如输入未知个数个字符串，以空格相隔，回车表示结束）一般可采取的判断方法为：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">while(cin &gt;&gt; key)&#123;</span><br><span class="line">	//...</span><br><span class="line">	char c = getchar();</span><br><span class="line">	if(c == &#x27;\n&#x27;)</span><br><span class="line">		break;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>为防止使用string、cin、cout超时、越界等情况，当已知输入string的结构时，可采取将string用char[]接受，并转化为int的方法。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//e.g. 已知字符串为三个大写字母和一个数字的形式</span><br><span class="line">int getid(char *name) &#123;</span><br><span class="line">    int id = 0;</span><br><span class="line">	for(int i = 0; i &lt; 3; i++)</span><br><span class="line">		id = 26 * id + (name[i] - &#x27;A&#x27;);</span><br><span class="line">	id = id * 10 + (name[3] - &#x27;0&#x27;);</span><br><span class="line">	return id;</span><br><span class="line">&#125;</span><br><span class="line">const int maxn = 26 * 26 * 26 * 10 + 10;</span><br><span class="line">vector&lt;int&gt; v[maxn];</span><br><span class="line">int mian()&#123;</span><br><span class="line">    char name[5];</span><br><span class="line">    scanf(&quot;%s&quot;, name);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>在不知道树的根节点的情况下，可以采取如下方法：写一个循环进行判断，没有出现在child结点中的序号即为根节点</li>
+<li>当需要用到二维矩阵作标记而数组太大时（如需标记每两个点的连接情况，每个点的id为4位数，若直接表示为二维矩阵则为arr[10000][10000]），为避免内存超限，可采取unordered_map&lt;int, bool&gt;形式，如a与b相连，即可表示成m[id_a * 10000 + id_b] &#x3D; true（即int的前四位表示第一个点，后四位表示第二个点）。</li>
+</ul>
+<h3 id="15-特定题型的算法"><a href="#15-特定题型的算法" class="headerlink" title="15.特定题型的算法"></a>15.特定题型的算法</h3><ul>
+<li>完全二叉树的判断<br>先记录每个节点的left child和right child（结构体或vector均可），从根节点开始对整个树进行dfs，若左节点不为空则嵌套左节点开始的dfs，若右节点不为空则嵌套右节点开始的dfs，同时函数传参节点序号（根节点为1，左节点为2 * index，右节点为2 * index + 1），将最大的序号记录在一个全局变量中，若最大序号等于节点数，则是完全二叉树，否则不是。</li>
+<li>连通分量的统计<br>1.采取并查集的方法，即统计Find(i) &#x3D;&#x3D; i的结点数（连通的道路都在同一个集合里）<br>2.采取DFS的方法，以邻接矩阵存储边，遍历所有未访问的节点，将与该节点相连通的所有节点都标记为已访问，记录主程序中访问的节点数。</li>
+</ul>
+
+                
+                <p class="end">__END__</p>
+            </div>
+            <div class="article-footer">
+                <div class="suffix-box">
+    <div class="suffix-box-left">
+        <img src="/image/sidebar/avatar.jpg" alt="HexaWater">
+    </div>
+    <div class="suffix-box-right">
+        <span class="suffix-box-title">文章作者：</span>HexaWater
+        <br>
+        <span class="suffix-box-title">文章出处：</span><a href="/2020/09/28/PTA/" target="_blank">PTA刷题小笔记</a>
+        <br>
+        <span class="suffix-box-title">作者签名：</span>我偏爱写诗的荒谬，胜过不写诗的荒谬。
+        <br>
+        <span class="suffix-box-title">关于主题：</span><a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+        <br>
+        <span class="suffix-box-title">版权声明：</span>文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+        <br>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+                
+                    <div class="category">
+                        分类：
+                        
+                            <a href="/categories/Code/">Code</a>
+                        
+                    </div>
+                
+                
+                <div class="article-prev-next">
+                    
+                        <a href="/2021/09/18/Birthday2021/" class="prev-prefix">« </a> 上一篇：    <a href="/2021/09/18/Birthday2021/" title="发布于 2021-09-18 09:55">生日随笔_2021</a>
+                        <br>
+                    
+                    
+                        <a href="/2020/03/17/DreamsRecord/" class="next-prefix">» </a> 下一篇：    <a href="/2020/03/17/DreamsRecord/" title="发布于 2020-03-17 07:27">夢錄-壹</a>
+                    
+                </div>
+            </div>
+            
+    <div class="article-comments">
+        
+            <div class="comments-title">
+                评论列表
+            </div>
+        
+        <div class="comments-content"></div>
+    </div>
+
+        </div>
+    
+</div>
+    <div id="footer"></div>
+    <div id="sidebar">
+    <div class="menu-wrap" style="display:none;">
+        
+            <div class="menu-notice">
+                <span class="iconfont icon-notice"></span>
+                <div class="notice">
+                    <span>Craving the world.</span>
+                </div>
+            </div>
+        
+        <nav class="menu">
+            <div class="menu-introduce"> 
+                <div class="introduce-avatar">
+                    <img src="/image/sidebar/avatar.jpg">
+                </div> 
+                <div class="introduce-info"> 
+                    <div class="introduce-user"><span>HexaWater</span></div>
+                </div> 
+            </div> 
+            <div class="menu-list">
+                <ul>
+                    
+                        <li class=""><a href="/" class="" target="_self"><span class="iconfont icon-home-fill"></span>首页</a></li>
+                    
+                        <li class=""><a href="/category" class="" target="_self"><span class="iconfont icon-folder-fill"></span>分类</a></li>
+                    
+                        <li class=""><a href="/tag" class="" target="_self"><span class="iconfont icon-discount-fill"></span>标签</a></li>
+                    
+                        <li class=""><a href="/archive" class="" target="_self"><span class="iconfont icon-calendar-fill"></span>归档</a></li>
+                    
+                        <li class=""><a href="/donate" class="" target="_self"><span class="iconfont icon-heart-fill"></span>赞赏</a></li>
+                    
+                        <li class=""><a href="/about" class="" target="_self"><span class="iconfont icon-about-fill"></span>关于</a></li>
+                    
+                        <li class=""><a href="javascript:;" class="search" target="_self"><span class="iconfont icon-search-menu"></span>搜索</a></li>
+                    
+                        <li class=""><a href="/comment" class="" target="_self"><span class="iconfont icon-comments-fill"></span>留言板</a></li>
+                    
+                        <li class=""><a href="/friend" class="" target="_self"><span class="iconfont icon-link"></span>友情链接</a></li>
+                    
+                </ul> 
+            </div> 
+            <div class="menu-link">
+                <div class="box">
+                    <div class="image-box"></div>
+                </div>
+                
+                    <a name="GitHub" href="https://github.com/seltyL" class="" target="_blank" data=""><span class="iconfont icon-github"></span></a>
+                
+            </div> 
+        </nav>
+        <button class="menu-button-close"></button>
+        <div class="morph-shape" id="morph-shape" data-morph-open="M-7.312,0H15c0,0,66,113.339,66,399.5C81,664.006,15,800,15,800H-7.312V0z;M-7.312,0H100c0,0,0,113.839,0,400c0,264.506,0,400,0,400H-7.312V0z">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 800" preserveAspectRatio="none">
+                <path d="M-7.312,0H0c0,0,0,113.839,0,400c0,264.506,0,400,0,400h-7.312V0z"/>
+            </svg>
+        </div>
+    </div>
+    <button class="menu-button-open">MENU</button>
+    <div class="menu-cover"></div>
+</div>
+    <link type="text/css" rel="stylesheet" href="/css/search.css">
+<script type="text/javascript" src="/js/iscroll.js"></script>
+<script type="text/javascript" src="/js/instantsearch.min.js"></script>
+<div class="search-window">
+    <div class="search-content">
+        <div class="search-content-icon">
+            <i class="iconfont icon-search"></i>
+        </div>
+        <div id="search-input" class="search-input"></div>
+    </div>
+
+    <div class="search-scroll">
+        <div class="search-result">
+            <div id="search-stats" class="search-stats"></div>
+            <div id="search-hits"></div>
+            <div id="search-pagination" class="search-pagination"></div>
+        </div>
+    </div>
+
+    <span class="search-close-icon">
+        <i class="iconfont icon-close"></i>
+    </span>
+</div>
+    <div id="tools">
+    <div class="progressbar-top"></div>
+
+    
+        <link type="text/css" rel="stylesheet" href="/css/APlayer.css">
+        <script type="text/javascript" src="/js/APlayer.min.js"></script>
+        <script type="text/javascript" src="/js/Meting.min.js"></script>
+        <meting-js id="82966641" lrcshow="false" server="netease" type="playlist" fixed="true" autoplay="false" loop="all" order="random" preload="auto" volume="0.67" mutex="true"></meting-js>
+    
+    
+    <div class="wrap-right">
+        <div class="setting">
+            <div class="iconbox favorites" switch="false">
+                <span class="iconfont icon-favorites"></span>
+                <span class="icontext">关注</span>
+            </div>
+            <div class="iconbox mode">
+                <div class="light">
+                    <span class="iconfont icon-daymode"></span>
+                    <span class="icontext">浅色模式</span>
+                </div>
+                <div class="dark">
+                    <span class="iconfont icon-nightmode-fill"></span>
+                    <span class="icontext">深色模式</span>
+                </div>
+            </div>
+            <a href="javascript:;" target="_self" class="search">
+                <div class="iconbox">
+                    <span class="iconfont icon-search-menu"></span>
+                    <span class="icontext">搜索</span>
+                </div>
+            </a>
+            <div class="iconbox bottom">
+                <div style="display: inline-block; transform: rotate(180deg);">
+                    <span class="iconfont icon-top"></span>
+                </div>
+                <span class="icontext">跳至底部</span>
+            </div>
+        </div>
+        <div class="iconbox set">
+            <div style="display: inline-block;">
+                <span class="iconfont icon-setting"></span>
+            </div>
+            <span class="icontext">设置</span>
+        </div>
+        <div class="iconbox top">
+            <span class="iconfont icon-top"></span>
+            <span class="icontext">返回顶部</span>
+        </div>
+    </div>
+    <div class="loading"></div>
+</div>
+    <script>
+    window.config = {
+        GitHubUserName     : "first19326",
+        GitHubRepositories : "Hexo-LiveForCode",
+
+        User             : "HexaWater",
+        UserAvatar       : "/image/sidebar/avatar.jpg",
+        WebsiteStartDate : "2018-11-11",
+
+        WebsiteTitleBlur         : "(◍´꒳`◍) Hi, HexaWater",
+        WebsiteTitleBlurTimeOut  : 500,
+        WebsiteTitleFocus        : "(*´∇｀*) 欢迎回来!",
+        WebsiteTitleFocusTimeOut : 1000,
+        WebsiteFavicon           : "/image/website/logo.png",
+
+        ProgressBar : {
+            id       : "topProgressBar",
+            color    : "#77B6FF",
+            height   : "2px",
+            duration : 0.2
+        },
+
+        Loading: {
+            rebound : {
+                tension  : 16,
+                friction : 5
+            },
+            spinner : {
+                id     : "spinner",
+                radius : 90,
+                sides  : 3,
+                depth  : 4,
+                colors : {
+                    background : "#F0F0F0",
+                    stroke     : "#272633",
+                    base       : "",
+                    child      : "#272633"
+                },
+                alwaysForward : true,
+                restAt        : 0.5,
+                renderBase    : false
+            }
+        },
+
+        HomeHeaderAnimationRendered : false,
+        HomeHeaderAnimation         : {
+            radius      : 15,
+            density     : 0.2,
+            color       : "rgba(255, 255, 255, .2)",
+            clearOffset : 0.3
+        },
+
+        BackAnimationRendered          : true,
+        IEBrowserBackAnimationRendered : false,
+        BackAnimation                  : {
+            colorSaturation  : "60%",
+            colorBrightness  : "50%",
+            colorAlpha       : 0.5,
+            colorCycleSpeed  : 5,
+            verticalPosition : "random",
+            horizontalSpeed  : 200,
+            ribbonCount      : 3,
+            strokeSize       : 0,
+            parallaxAmount   : -0.2,
+            animateSections  : true
+        },
+
+        HomeHeaderImage : [
+            
+                "/image/header/thumb-1920-949660.jpg",
+            
+                "/image/header/home.jpeg",
+            
+        ],
+        HomeBannerText  : "浮名浮利，虚苦劳神。叹隙中驹，石中火，梦中身。",
+
+        ArticleHeaderImage : [
+            
+                "/image/header/wallhaven-700035.jpg",
+            
+        ],
+
+        OtherBannerText : "我们在逐渐凉爽的暮色中向死亡驶去。",
+
+        Error : {
+            icon    : "icon-swimming",
+            title   : "PAGE NOT FOUND",
+            content : [
+                
+                    "很抱歉，您访问的页面不存在！",
+                
+                    "可能是输入地址有误或该地址已变更。",
+                
+            ],
+            buttons : [
+                
+                    {
+                        icon  : "icon-home",
+                        text  : "返回首页",
+                        href  : "/",
+                        class : ""
+                    },
+                
+            ]
+        },
+
+        MenuNotice : {
+            enable : true,
+            notice : "Craving the world.",
+            speed  : 10
+        },
+        MenuList : [
+            
+                {
+                    name   : "首页",
+                    icon   : "icon-home-fill",
+                    href   : "/",
+                    type   : "index",
+                    class  : "",
+                    target : "_self"
+                },
+            
+                {
+                    name   : "分类",
+                    icon   : "icon-folder-fill",
+                    href   : "/category",
+                    type   : "category",
+                    class  : "",
+                    target : "_self"
+                },
+            
+                {
+                    name   : "标签",
+                    icon   : "icon-discount-fill",
+                    href   : "/tag",
+                    type   : "tag",
+                    class  : "",
+                    target : "_self"
+                },
+            
+                {
+                    name   : "归档",
+                    icon   : "icon-calendar-fill",
+                    href   : "/archive",
+                    type   : "archive",
+                    class  : "",
+                    target : "_self"
+                },
+            
+                {
+                    name   : "赞赏",
+                    icon   : "icon-heart-fill",
+                    href   : "/donate",
+                    type   : "donate",
+                    class  : "",
+                    target : "_self"
+                },
+            
+                {
+                    name   : "关于",
+                    icon   : "icon-about-fill",
+                    href   : "/about",
+                    type   : "about",
+                    class  : "",
+                    target : "_self"
+                },
+            
+                {
+                    name   : "搜索",
+                    icon   : "icon-search-menu",
+                    href   : "javascript:;",
+                    type   : "",
+                    class  : "search",
+                    target : "_self"
+                },
+            
+                {
+                    name   : "留言板",
+                    icon   : "icon-comments-fill",
+                    href   : "/comment",
+                    type   : "comment",
+                    class  : "",
+                    target : "_self"
+                },
+            
+                {
+                    name   : "友情链接",
+                    icon   : "icon-link",
+                    href   : "/friend",
+                    type   : "friend",
+                    class  : "",
+                    target : "_self"
+                },
+            
+        ],
+        MenuLink : [
+            
+                
+                    {
+                        name   : "GitHub",
+                        icon   : "icon-github",
+                        href   : "https://github.com/seltyL",
+                        class  : "",
+                        target : "_blank",
+                        image  : ""
+                    },
+                
+            
+        ],
+
+        FooterStyle : 2,
+        BottomText  : "<div>林下漏月光，疏疏如残雪</div><div>&copy; 2018-2022 HexaWater. All Rights Reserved.</div>",
+
+        ConsoleList : [
+            
+                
+                    [
+                        
+                            
+                                "Based on cnblogs theme SimpleMemory.",
+                            
+                                "",
+                            
+                        
+                    ],
+                
+                    [
+                        
+                            
+                                "SimpleMemory Author:",
+                            
+                                "BNDong",
+                            
+                        
+                    ],
+                
+                    [
+                        
+                            
+                                "Theme:",
+                            
+                                "LiveForCode",
+                            
+                        
+                    ],
+                
+            
+        ],
+
+        FontIconExtend : "",
+
+        Donate : {
+            paypal  : "",
+            bitcoin : "",
+            alipay  : "/image/donate/alipay.jpg",
+            wechat  : "/image/donate/wechat.jpg"
+        },
+
+        Search : {
+            applicationID : "QB3SW0E603",
+            apiKey        : "67ba4c13303e9398952e9745791c770a",
+            indexName     : "blog_search",
+            hits          : {
+                page : 10
+            },
+            labels        : {
+                placeholder : "搜索",
+                empty       : "未发现与 「${query}」 相关的内容",
+                stats       : "${hits} 条相关条目，使用了 ${time} 毫秒",
+            }
+        }, 
+
+        Valine : {
+            switch         : true,
+            el             : ".comments-content",
+            appId          : "ImNCCRRsPA9SMbHE8052E68Y-gzGzoHsz",
+            appKey         : "74wFclHykJFVDQTSIl9rjTJM",
+            serverURLs     : "",
+            placeholder    : "Leave your comment",
+            avatar         : "mm",
+            meta           : "nick,mail,link",
+            requiredFields : "nick,mail",
+            pageSize       : 5,
+            lang           : "zh-cn",
+            visitor        : true,
+            enableQQ       : true
+        },
+
+        Tocbot : {
+            switch                : true,
+            tocSelector           : ".toc",
+            contentSelector       : ".article-body",
+            headingSelector       : "h1, h2, h3, h4, h5",
+            headingsOffset        : 0,
+            scrollSmooth          : true,
+            scrollSmoothOffset    : -5,
+            positionFixedSelector : ".toc",
+            positionFixedClass    : "toc-fixed",
+            fixedSidebarOffset    : "",
+        },
+
+        Require : {
+            baseUrl     : "/js/",
+            waitSeconds : 100
+        },
+
+        Music : {
+            type : "Meting"
+        },
+        APlayer : {
+            container : ".aplayer",
+            fixed     : true,
+            autoplay  : false,
+            loop      : "all",
+            order     : "random",
+            preload   : "auto",
+            volume    : 0.67,
+            mutex     : true,
+            lrcType   : 3,
+            audio     : [
+                
+                    {
+                        name   : "Endless Tears",
+                        artist : "CLIFF EDGE",
+                        cover  : "/music/cover/Endless Tears.jpg",
+                        url    : "/music/song/Endless Tears.mp3",
+                        lrc    : "/music/lrc/Endless Tears.lrc"
+                    },
+                
+            ]
+        },
+        Meting : {
+            id       : "82966641", 
+            lrcshow  : false, 
+            server   : "netease", 
+            type     : "playlist", 
+            fixed    : true, 
+            autoplay : false, 
+            loop     : "all", 
+            order    : "random", 
+            preload  : "auto", 
+            volume   : 0.67, 
+            mutex    : true
+        },
+
+        Mouse : {
+            enable  : true,
+            options : {
+                size  : 6,
+                sizeF : 24
+            }
+        },
+
+        LazyLoad : {
+            default : "/image/website/lazyload.svg"
+        },
+  
+        Style : {
+            aplayer          : "/css/APlayer.css",
+            archive          : "/css/archive.css",
+            base             : "/css/base.css",
+            clipboard        : "/css/clipboard.css",
+            code             : "/css/code.css",
+            donate           : "/css/donate.css",
+            fancybox         : "/css/jquery.fancybox.css",
+            footer           : "/css/footer.css",
+            iconfont         : "/iconfont/iconfont.css",
+            index            : "/css/index.css",
+            menuBubble       : "/css/menu-bubble.css",
+            mouse            : "/css/mouse.css",
+            page             : "/css/page.css",
+            post             : "/css/post.css",
+            search           : "/css/search.css",
+            tocbot           : "/css/tocbot.css",
+            valine           : "/css/valine.css"
+        },
+
+        Script: {
+            aplayer          : "/js/APlayer.min.js",
+            config           : "/js/require.config.js",
+            index            : "/js/index.js",
+            instantSearch    : "/js/instantsearch.min.js",
+            iscroll          : "/js/iscroll.js",
+            jQuery           : "/js/jquery-3.4.1.min.js",
+            loading          : "/js/loading.js",
+            meting           : "/js/Meting.min.js",
+            require          : "/js/require.min.js"
+        },
+
+        Font: {
+            LongCang    : "/font/LongCang.css",
+            Monda       : "/font/Monda.css",
+            NotoSansSC  : "/font/NotoSansSC.css",
+            NotoSerifSC : "/font/NotoSerifSC.css",
+            Playball    : "/font/Playball.css",
+            PTMono      : "/font/PTMono.css",
+            Roboto      : "/font/Roboto.css",
+            RobotoSlab  : "/font/RobotoSlab.css",
+            Rosario     : "/font/Rosario.css",
+            UbuntuMono  : "/font/UbuntuMono.css"
+        },
+
+        Suffix : {
+            about : "我偏爱写诗的荒谬，胜过不写诗的荒谬。"
+        },
+            
+        Theme : {
+            url  : "https://github.com/first19326/Hexo-LiveForCode",
+            name : "Hexo - Live For Code"
+        }  
+    };
+</script>
+    <script type="text/javascript" src="/js/index.js"></script>
+</body>
+</html>
